@@ -3,9 +3,9 @@ Miganie-led.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000072  00000000  00000000  00000054  2**1
+  0 .text         000000b0  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .comment      00000030  00000000  00000000  000000c6  2**0
+  1 .comment      00000030  00000000  00000000  00000104  2**0
                   CONTENTS, READONLY
 
 Disassembly of section .text:
@@ -39,7 +39,7 @@ Disassembly of section .text:
   2e:	de bf       	out	0x3e, r29	; 62
   30:	cd bf       	out	0x3d, r28	; 61
   32:	02 d0       	rcall	.+4      	; 0x38 <main>
-  34:	1c c0       	rjmp	.+56     	; 0x6e <_exit>
+  34:	3b c0       	rjmp	.+118    	; 0xac <_exit>
 
 00000036 <__bad_interrupt>:
   36:	e4 cf       	rjmp	.-56     	; 0x0 <__vectors>
@@ -49,32 +49,63 @@ Disassembly of section .text:
   3a:	84 bb       	out	0x14, r24	; 20
   3c:	81 e0       	ldi	r24, 0x01	; 1
   3e:	85 bb       	out	0x15, r24	; 21
-  40:	80 e0       	ldi	r24, 0x00	; 0
-  42:	90 e0       	ldi	r25, 0x00	; 0
-  44:	31 e0       	ldi	r19, 0x01	; 1
-  46:	2f e7       	ldi	r18, 0x7F	; 127
-  48:	49 ea       	ldi	r20, 0xA9	; 169
-  4a:	53 e0       	ldi	r21, 0x03	; 3
-  4c:	21 50       	subi	r18, 0x01	; 1
-  4e:	40 40       	sbci	r20, 0x00	; 0
-  50:	50 40       	sbci	r21, 0x00	; 0
-  52:	e1 f7       	brne	.-8      	; 0x4c <__SREG__+0xd>
-  54:	00 c0       	rjmp	.+0      	; 0x56 <__SREG__+0x17>
-  56:	00 00       	nop
-  58:	25 b3       	in	r18, 0x15	; 21
-  5a:	22 0f       	add	r18, r18
-  5c:	25 bb       	out	0x15, r18	; 21
-  5e:	01 96       	adiw	r24, 0x01	; 1
-  60:	86 30       	cpi	r24, 0x06	; 6
-  62:	91 05       	cpc	r25, r1
-  64:	81 f7       	brne	.-32     	; 0x46 <__SREG__+0x7>
-  66:	35 bb       	out	0x15, r19	; 21
-  68:	80 e0       	ldi	r24, 0x00	; 0
-  6a:	90 e0       	ldi	r25, 0x00	; 0
-  6c:	ec cf       	rjmp	.-40     	; 0x46 <__SREG__+0x7>
+  40:	20 e0       	ldi	r18, 0x00	; 0
+  42:	30 e0       	ldi	r19, 0x00	; 0
+  44:	80 e0       	ldi	r24, 0x00	; 0
+  46:	90 e0       	ldi	r25, 0x00	; 0
+  48:	51 e0       	ldi	r21, 0x01	; 1
+  4a:	60 e2       	ldi	r22, 0x20	; 32
+  4c:	21 15       	cp	r18, r1
+  4e:	31 05       	cpc	r19, r1
+  50:	99 f4       	brne	.+38     	; 0x78 <__SREG__+0x39>
+  52:	86 30       	cpi	r24, 0x06	; 6
+  54:	91 05       	cpc	r25, r1
+  56:	21 f4       	brne	.+8      	; 0x60 <__SREG__+0x21>
+  58:	65 bb       	out	0x15, r22	; 21
+  5a:	21 e0       	ldi	r18, 0x01	; 1
+  5c:	30 e0       	ldi	r19, 0x00	; 0
+  5e:	15 c0       	rjmp	.+42     	; 0x8a <__SREG__+0x4b>
+  60:	4f ef       	ldi	r20, 0xFF	; 255
+  62:	79 e6       	ldi	r23, 0x69	; 105
+  64:	e8 e1       	ldi	r30, 0x18	; 24
+  66:	41 50       	subi	r20, 0x01	; 1
+  68:	70 40       	sbci	r23, 0x00	; 0
+  6a:	e0 40       	sbci	r30, 0x00	; 0
+  6c:	e1 f7       	brne	.-8      	; 0x66 <__SREG__+0x27>
+  6e:	00 c0       	rjmp	.+0      	; 0x70 <__SREG__+0x31>
+  70:	00 00       	nop
+  72:	45 b3       	in	r20, 0x15	; 21
+  74:	44 0f       	add	r20, r20
+  76:	17 c0       	rjmp	.+46     	; 0xa6 <__SREG__+0x67>
+  78:	21 30       	cpi	r18, 0x01	; 1
+  7a:	31 05       	cpc	r19, r1
+  7c:	39 f7       	brne	.-50     	; 0x4c <__SREG__+0xd>
+  7e:	86 30       	cpi	r24, 0x06	; 6
+  80:	91 05       	cpc	r25, r1
+  82:	31 f4       	brne	.+12     	; 0x90 <__SREG__+0x51>
+  84:	55 bb       	out	0x15, r21	; 21
+  86:	20 e0       	ldi	r18, 0x00	; 0
+  88:	30 e0       	ldi	r19, 0x00	; 0
+  8a:	80 e0       	ldi	r24, 0x00	; 0
+  8c:	90 e0       	ldi	r25, 0x00	; 0
+  8e:	de cf       	rjmp	.-68     	; 0x4c <__SREG__+0xd>
+  90:	4f ef       	ldi	r20, 0xFF	; 255
+  92:	79 e6       	ldi	r23, 0x69	; 105
+  94:	e8 e1       	ldi	r30, 0x18	; 24
+  96:	41 50       	subi	r20, 0x01	; 1
+  98:	70 40       	sbci	r23, 0x00	; 0
+  9a:	e0 40       	sbci	r30, 0x00	; 0
+  9c:	e1 f7       	brne	.-8      	; 0x96 <__SREG__+0x57>
+  9e:	00 c0       	rjmp	.+0      	; 0xa0 <__SREG__+0x61>
+  a0:	00 00       	nop
+  a2:	45 b3       	in	r20, 0x15	; 21
+  a4:	46 95       	lsr	r20
+  a6:	45 bb       	out	0x15, r20	; 21
+  a8:	01 96       	adiw	r24, 0x01	; 1
+  aa:	d0 cf       	rjmp	.-96     	; 0x4c <__SREG__+0xd>
 
-0000006e <_exit>:
-  6e:	f8 94       	cli
+000000ac <_exit>:
+  ac:	f8 94       	cli
 
-00000070 <__stop_program>:
-  70:	ff cf       	rjmp	.-2      	; 0x70 <__stop_program>
+000000ae <__stop_program>:
+  ae:	ff cf       	rjmp	.-2      	; 0xae <__stop_program>
