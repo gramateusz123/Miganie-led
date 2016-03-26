@@ -30,56 +30,56 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-NAKURWIAM_LEDEM.lss \
+Miganie-led.lss \
 
 FLASH_IMAGE += \
-NAKURWIAM_LEDEM.hex \
+Miganie-led.hex \
 
 EEPROM_IMAGE += \
-NAKURWIAM_LEDEM.eep \
+Miganie-led.eep \
 
 SIZEDUMMY += \
 sizedummy \
 
 
 # All Target
-all: NAKURWIAM_LEDEM.elf secondary-outputs
+all: Miganie-led.elf secondary-outputs
 
 # Tool invocations
-NAKURWIAM_LEDEM.elf: $(OBJS) $(USER_OBJS)
+Miganie-led.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,NAKURWIAM_LEDEM.map -mmcu=atmega8 -o "NAKURWIAM_LEDEM.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,Miganie-led.map -mmcu=atmega8 -o "Miganie-led.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-NAKURWIAM_LEDEM.lss: NAKURWIAM_LEDEM.elf
+Miganie-led.lss: Miganie-led.elf
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S NAKURWIAM_LEDEM.elf  >"NAKURWIAM_LEDEM.lss"
+	-avr-objdump -h -S Miganie-led.elf  >"Miganie-led.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-NAKURWIAM_LEDEM.hex: NAKURWIAM_LEDEM.elf
+Miganie-led.hex: Miganie-led.elf
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex NAKURWIAM_LEDEM.elf  "NAKURWIAM_LEDEM.hex"
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Miganie-led.elf  "Miganie-led.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-NAKURWIAM_LEDEM.eep: NAKURWIAM_LEDEM.elf
+Miganie-led.eep: Miganie-led.elf
 	@echo 'Create eeprom image (ihex format)'
-	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex NAKURWIAM_LEDEM.elf  "NAKURWIAM_LEDEM.eep"
+	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex Miganie-led.elf  "Miganie-led.eep"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: NAKURWIAM_LEDEM.elf
+sizedummy: Miganie-led.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega8 NAKURWIAM_LEDEM.elf
+	-avr-size --format=avr --mcu=atmega8 Miganie-led.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) NAKURWIAM_LEDEM.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Miganie-led.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(EEPROM_IMAGE) $(SIZEDUMMY)
