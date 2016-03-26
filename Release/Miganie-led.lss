@@ -3,9 +3,9 @@ Miganie-led.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000000f2  00000000  00000000  00000054  2**1
+  0 .text         00000072  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .comment      00000030  00000000  00000000  00000146  2**0
+  1 .comment      00000030  00000000  00000000  000000c6  2**0
                   CONTENTS, READONLY
 
 Disassembly of section .text:
@@ -39,7 +39,7 @@ Disassembly of section .text:
   2e:	de bf       	out	0x3e, r29	; 62
   30:	cd bf       	out	0x3d, r28	; 61
   32:	02 d0       	rcall	.+4      	; 0x38 <main>
-  34:	5c c0       	rjmp	.+184    	; 0xee <_exit>
+  34:	1c c0       	rjmp	.+56     	; 0x6e <_exit>
 
 00000036 <__bad_interrupt>:
   36:	e4 cf       	rjmp	.-56     	; 0x0 <__vectors>
@@ -47,98 +47,34 @@ Disassembly of section .text:
 00000038 <main>:
   38:	8f ef       	ldi	r24, 0xFF	; 255
   3a:	84 bb       	out	0x14, r24	; 20
-  3c:	75 e1       	ldi	r23, 0x15	; 21
-  3e:	6a e2       	ldi	r22, 0x2A	; 42
-  40:	5e e3       	ldi	r21, 0x3E	; 62
-  42:	4d e3       	ldi	r20, 0x3D	; 61
-  44:	3b e3       	ldi	r19, 0x3B	; 59
-  46:	27 e3       	ldi	r18, 0x37	; 55
-  48:	9f e2       	ldi	r25, 0x2F	; 47
-  4a:	8f e1       	ldi	r24, 0x1F	; 31
-  4c:	75 bb       	out	0x15, r23	; 21
-  4e:	af ef       	ldi	r26, 0xFF	; 255
-  50:	e9 e6       	ldi	r30, 0x69	; 105
-  52:	f8 e1       	ldi	r31, 0x18	; 24
-  54:	a1 50       	subi	r26, 0x01	; 1
-  56:	e0 40       	sbci	r30, 0x00	; 0
-  58:	f0 40       	sbci	r31, 0x00	; 0
-  5a:	e1 f7       	brne	.-8      	; 0x54 <__SREG__+0x15>
-  5c:	00 c0       	rjmp	.+0      	; 0x5e <__SREG__+0x1f>
-  5e:	00 00       	nop
-  60:	65 bb       	out	0x15, r22	; 21
-  62:	af ef       	ldi	r26, 0xFF	; 255
-  64:	e9 e6       	ldi	r30, 0x69	; 105
-  66:	f8 e1       	ldi	r31, 0x18	; 24
-  68:	a1 50       	subi	r26, 0x01	; 1
-  6a:	e0 40       	sbci	r30, 0x00	; 0
-  6c:	f0 40       	sbci	r31, 0x00	; 0
-  6e:	e1 f7       	brne	.-8      	; 0x68 <__SREG__+0x29>
-  70:	00 c0       	rjmp	.+0      	; 0x72 <__SREG__+0x33>
-  72:	00 00       	nop
-  74:	55 bb       	out	0x15, r21	; 21
-  76:	af ef       	ldi	r26, 0xFF	; 255
-  78:	e9 e6       	ldi	r30, 0x69	; 105
-  7a:	f8 e1       	ldi	r31, 0x18	; 24
-  7c:	a1 50       	subi	r26, 0x01	; 1
-  7e:	e0 40       	sbci	r30, 0x00	; 0
-  80:	f0 40       	sbci	r31, 0x00	; 0
-  82:	e1 f7       	brne	.-8      	; 0x7c <__SREG__+0x3d>
-  84:	00 c0       	rjmp	.+0      	; 0x86 <__SREG__+0x47>
-  86:	00 00       	nop
-  88:	45 bb       	out	0x15, r20	; 21
-  8a:	af ef       	ldi	r26, 0xFF	; 255
-  8c:	e9 e6       	ldi	r30, 0x69	; 105
-  8e:	f8 e1       	ldi	r31, 0x18	; 24
-  90:	a1 50       	subi	r26, 0x01	; 1
-  92:	e0 40       	sbci	r30, 0x00	; 0
-  94:	f0 40       	sbci	r31, 0x00	; 0
-  96:	e1 f7       	brne	.-8      	; 0x90 <__SREG__+0x51>
-  98:	00 c0       	rjmp	.+0      	; 0x9a <__SREG__+0x5b>
-  9a:	00 00       	nop
-  9c:	35 bb       	out	0x15, r19	; 21
-  9e:	af ef       	ldi	r26, 0xFF	; 255
-  a0:	e9 e6       	ldi	r30, 0x69	; 105
-  a2:	f8 e1       	ldi	r31, 0x18	; 24
-  a4:	a1 50       	subi	r26, 0x01	; 1
-  a6:	e0 40       	sbci	r30, 0x00	; 0
-  a8:	f0 40       	sbci	r31, 0x00	; 0
-  aa:	e1 f7       	brne	.-8      	; 0xa4 <__SREG__+0x65>
-  ac:	00 c0       	rjmp	.+0      	; 0xae <__SREG__+0x6f>
-  ae:	00 00       	nop
-  b0:	25 bb       	out	0x15, r18	; 21
-  b2:	af ef       	ldi	r26, 0xFF	; 255
-  b4:	e9 e6       	ldi	r30, 0x69	; 105
-  b6:	f8 e1       	ldi	r31, 0x18	; 24
-  b8:	a1 50       	subi	r26, 0x01	; 1
-  ba:	e0 40       	sbci	r30, 0x00	; 0
-  bc:	f0 40       	sbci	r31, 0x00	; 0
-  be:	e1 f7       	brne	.-8      	; 0xb8 <__SREG__+0x79>
-  c0:	00 c0       	rjmp	.+0      	; 0xc2 <__SREG__+0x83>
-  c2:	00 00       	nop
-  c4:	95 bb       	out	0x15, r25	; 21
-  c6:	af ef       	ldi	r26, 0xFF	; 255
-  c8:	e9 e6       	ldi	r30, 0x69	; 105
-  ca:	f8 e1       	ldi	r31, 0x18	; 24
-  cc:	a1 50       	subi	r26, 0x01	; 1
-  ce:	e0 40       	sbci	r30, 0x00	; 0
-  d0:	f0 40       	sbci	r31, 0x00	; 0
-  d2:	e1 f7       	brne	.-8      	; 0xcc <__SREG__+0x8d>
-  d4:	00 c0       	rjmp	.+0      	; 0xd6 <__SREG__+0x97>
-  d6:	00 00       	nop
-  d8:	85 bb       	out	0x15, r24	; 21
-  da:	af ef       	ldi	r26, 0xFF	; 255
-  dc:	e9 e6       	ldi	r30, 0x69	; 105
-  de:	f8 e1       	ldi	r31, 0x18	; 24
-  e0:	a1 50       	subi	r26, 0x01	; 1
-  e2:	e0 40       	sbci	r30, 0x00	; 0
-  e4:	f0 40       	sbci	r31, 0x00	; 0
-  e6:	e1 f7       	brne	.-8      	; 0xe0 <__SREG__+0xa1>
-  e8:	00 c0       	rjmp	.+0      	; 0xea <__SREG__+0xab>
-  ea:	00 00       	nop
-  ec:	af cf       	rjmp	.-162    	; 0x4c <__SREG__+0xd>
+  3c:	81 e0       	ldi	r24, 0x01	; 1
+  3e:	85 bb       	out	0x15, r24	; 21
+  40:	80 e0       	ldi	r24, 0x00	; 0
+  42:	90 e0       	ldi	r25, 0x00	; 0
+  44:	31 e0       	ldi	r19, 0x01	; 1
+  46:	2f e7       	ldi	r18, 0x7F	; 127
+  48:	49 ea       	ldi	r20, 0xA9	; 169
+  4a:	53 e0       	ldi	r21, 0x03	; 3
+  4c:	21 50       	subi	r18, 0x01	; 1
+  4e:	40 40       	sbci	r20, 0x00	; 0
+  50:	50 40       	sbci	r21, 0x00	; 0
+  52:	e1 f7       	brne	.-8      	; 0x4c <__SREG__+0xd>
+  54:	00 c0       	rjmp	.+0      	; 0x56 <__SREG__+0x17>
+  56:	00 00       	nop
+  58:	25 b3       	in	r18, 0x15	; 21
+  5a:	22 0f       	add	r18, r18
+  5c:	25 bb       	out	0x15, r18	; 21
+  5e:	01 96       	adiw	r24, 0x01	; 1
+  60:	86 30       	cpi	r24, 0x06	; 6
+  62:	91 05       	cpc	r25, r1
+  64:	81 f7       	brne	.-32     	; 0x46 <__SREG__+0x7>
+  66:	35 bb       	out	0x15, r19	; 21
+  68:	80 e0       	ldi	r24, 0x00	; 0
+  6a:	90 e0       	ldi	r25, 0x00	; 0
+  6c:	ec cf       	rjmp	.-40     	; 0x46 <__SREG__+0x7>
 
-000000ee <_exit>:
-  ee:	f8 94       	cli
+0000006e <_exit>:
+  6e:	f8 94       	cli
 
-000000f0 <__stop_program>:
-  f0:	ff cf       	rjmp	.-2      	; 0xf0 <__stop_program>
+00000070 <__stop_program>:
+  70:	ff cf       	rjmp	.-2      	; 0x70 <__stop_program>

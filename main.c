@@ -11,23 +11,17 @@
 int main(void){ //void czyli pobiera nic, np. podnieœ, po³ó¿.
 
 	DDRC = 0b11111111; //ustalamy czy dany port jest wejsciem, czy wyjsciem
-
+	PORTC = 0b00000001;
+	int licznik = 0;
 	while(1){
-		PORTC = 0b00010101;// przypisujemy stan wysoki albo niski na konkretny port
-		_delay_ms (1000);
-		PORTC = 0b00101010;
-		_delay_ms (1000);
-		PORTC = 0b00111110;
-		_delay_ms (1000);
-		PORTC = 0b00111101;
-		_delay_ms (1000);
-		PORTC = 0b00111011;
-		_delay_ms (1000);
-		PORTC = 0b00110111;
-		_delay_ms (1000);
-		PORTC = 0b00101111;
-		_delay_ms (1000);
-		PORTC = 0b00011111;
-		_delay_ms (1000);
+		if(licznik == 6)
+		{
+			licznik = 0;
+			PORTC = 0b00000001;
+		}
+		_delay_ms(150);
+		PORTC = (PORTC << 1);
+		licznik++;
 	}
 }
+
